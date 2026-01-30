@@ -1,0 +1,628 @@
+[
+    {
+        "name": "UK Biobank",
+        "subjects": 236313,
+        "access": "Human Approval (Fee)",
+        "referenceMeasurements": "BP",
+        "description": "Single finger PPG waves from middle-aged subjects. BP in same visit. See Field 4205.",
+        "url": "https://www.ukbiobank.ac.uk/",
+        "signals": [
+            "PPG"
+        ],
+        "group": "General",
+        "references": null
+    },
+    {
+        "name": "MIMIC-III Waveform Database",
+        "subjects": 10000,
+        "access": "Open Access: ODbL 1.0",
+        "referenceMeasurements": "HR, SpO2, BP",
+        "description": "Recordings from critically-ill adults and neonates, lasting from minutes to days. Typically at finger. 10,000s of subjects.",
+        "url": "https://doi.org/10.13026/gs83-bd50",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1038/sdata.2016.35"
+    },
+    {
+        "name": "VitalDB",
+        "subjects": 6153,
+        "access": "Open Access: Data Use Agreement",
+        "referenceMeasurements": "BP",
+        "description": "Finger PPG recordings from patients during operations.",
+        "url": "https://vitaldb.net/",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1038/s41598-018-20062-4"
+    },
+    {
+        "name": "MESA Dataset",
+        "subjects": 2056,
+        "access": "Human Approval (No Fee)",
+        "referenceMeasurements": "",
+        "description": "Finger PPG recordings from adults undergoing polysomnography.",
+        "url": "https://sleepdata.org/datasets/mesa",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.5665/sleep.4732"
+    },
+    {
+        "name": "Aurora-BP dataset",
+        "subjects": 1220,
+        "access": "Human Approval (No Fee)",
+        "referenceMeasurements": "BP",
+        "description": "Wrist PPG recordings in laboratory and daily life from adults.",
+        "url": "https://sleepdata.org/datasets/mesa",
+        "signals": [
+            "PPG",
+            "ECG",
+            "tonometry",
+            "accel"
+        ],
+        "group": "General",
+        "references": "https://doi.org/10.5665/sleep.4732"
+    },
+    {
+        "name": "WESAD Data Set",
+        "subjects": 15,
+        "access": "Open Access: bespoke",
+        "referenceMeasurements": "",
+        "description": "Recordings acquired in a ~ 2 hour protocol designed to amuse, stress, and relax.",
+        "url": "https://doi.org/10.24432/C57K5T",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp",
+            "accel"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1145/3242969.3242985"
+    },
+    {
+        "name": "PPG-DaLiA Data Set",
+        "subjects": 15,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Recordings acquired for ~ 2.5 hours during a protocol of daily living activities.",
+        "url": "https://doi.org/10.24432/C53890",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp",
+            "accel",
+            "EDA"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.3390/s19143079"
+    },
+    {
+        "name": "Pulse Wave DataBase",
+        "subjects": 4374,
+        "access": "Open Access: ODC PDDL 1.0",
+        "referenceMeasurements": "BP, blood flow, SV, HR, LVET",
+        "description": "Single simulated PPG pulse waves representative of healthy adults aged 25-75.",
+        "url": "https://doi.org/10.5281/zenodo.2633175",
+        "signals": [
+            "PPG",
+            "BP"
+        ],
+        "group": "Simulated",
+        "references": "https://doi.org/10.1152/ajpheart.00218.2019"
+    },
+    {
+        "name": "MIMIC PERform Large Training and Testing",
+        "subjects": 848,
+        "access": "Open Access: ODbL 1.0",
+        "referenceMeasurements": "",
+        "description": "Recordings from critically-ill adults and neonates, lasting 10 minutes. Typically at finger.",
+        "url": "https://doi.org/10.5281/zenodo.6807402",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1088/1361-6579/ac826d"
+    },
+    {
+        "name": "MIMIC PERform Training and Testing",
+        "subjects": 400,
+        "access": "Open Access: ODbL 1.0",
+        "referenceMeasurements": "",
+        "description": "Recordings from critically-ill adults and neonates, lasting 10 minutes. Typically at finger.",
+        "url": "https://doi.org/10.5281/zenodo.6807402",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1088/1361-6579/ac826d"
+    },
+    {
+        "name": "PPG-BP Database",
+        "subjects": 219,
+        "access": "Open Access: CC0",
+        "referenceMeasurements": "BP",
+        "description": "Three finger recordings from adults aged 20-89 with and without CVD, ~ 3 waves per recording.",
+        "url": "https://doi.org/10.6084/m9.figshare.5459299",
+        "signals": [
+            "PPG"
+        ],
+        "group": "General",
+        "references": "https://doi.org/10.1038/sdata.2018.20"
+    },
+    {
+        "name": "Sleep Disordered Breathing Database",
+        "subjects": 146,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Finger recordings lasting >= 3 hours, acquired from children referred for polysomnography.",
+        "url": "https://doi.org/10.6084/m9.figshare.1209662.v6",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1371/journal.pone.0112959"
+    },
+    {
+        "name": "ECSMP",
+        "subjects": 89,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Wrist recordings acquired from healthy subjects during a protocol designed to induce different emotions.",
+        "url": "https://doi.org/10.17632/vn5nknh3mn.2",
+        "signals": [
+            "PPG",
+            "ECG",
+            "accel"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1016/j.dib.2021.107660"
+    },
+    {
+        "name": "Pulse transit time during vasoconstriction Dataset",
+        "subjects": 86,
+        "access": "Automated Approval",
+        "referenceMeasurements": "BP",
+        "description": "~ 35-min wrist and finger recordings during cold pressor and active stand tests.",
+        "url": "https://doi.org/10.34973/te70-x603",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1016/j.exger.2020.110938"
+    },
+    {
+        "name": "Vortal Dataset",
+        "subjects": 57,
+        "access": "Human Approval (No Fee)",
+        "referenceMeasurements": "",
+        "description": "10-min finger and ear recordings before and after exercise from healthy adults aged 18-39 and > 70.",
+        "url": "https://doi.org/10.18742/RDM01-194",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1088/0967-3334/37/4/610"
+    },
+    {
+        "name": "BIDMC PPG and Respiration Dataset",
+        "subjects": 53,
+        "access": "Open Access: ODC-By 1.0",
+        "referenceMeasurements": "RR",
+        "description": "8-min recordings from critically-ill adults (a subset of the MIMIC-II dataset).",
+        "url": "https://doi.org/10.13026/C2208R",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1109/TBME.2016.2613124"
+    },
+    {
+        "name": "CapnoBase",
+        "subjects": 42,
+        "access": "Open Access: Data Use Agreement",
+        "referenceMeasurements": "RR",
+        "description": "8-min recordings from paediatrics and adults during elective surgery and anaesthesia.",
+        "url": "https://doi.org/10.5683/SP2/NLB8IT",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "General",
+        "references": "https://doi.org/10.1109/TBME.2013.2246160"
+    },
+    {
+        "name": "Bed-based BCG Dataset",
+        "subjects": 40,
+        "access": "Automated Approval",
+        "referenceMeasurements": "",
+        "description": "Recordings from adults whilst at rest.",
+        "url": "https://dx.doi.org/10.21227/77hc-py84",
+        "signals": [
+            "BCG",
+            "ECG",
+            "BP"
+        ],
+        "group": "General",
+        "references": "https://www.mdpi.com/1424-8220/21/1/156"
+    },
+    {
+        "name": "MIMIC PERform AF Dataset",
+        "subjects": 35,
+        "access": "Open Access: ODbL 1.0",
+        "referenceMeasurements": "",
+        "description": "Recordings from critically-ill adults categorised as either AF (19 subjects) or normal sinus rhythm (16 subjects), lasting 10 minutes. Typically at finger.",
+        "url": "https://doi.org/10.5281/zenodo.6807402",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1088/1361-6579/ac826d"
+    },
+    {
+        "name": "Real-World PPG dataset",
+        "subjects": 35,
+        "access": "Open Access: CERN OHL 1.2",
+        "referenceMeasurements": "",
+        "description": "Recordings from healthy subjects aged 10 to 74 years old: several 6-second recordings per subject.",
+        "url": "https://doi.org/10.17632/yynb8t9x3d.2",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.17632/yynb8t9x3d.2"
+    },
+    {
+        "name": "DEAP Database",
+        "subjects": 32,
+        "access": "Automated Approval (no fee)",
+        "referenceMeasurements": "video",
+        "description": "Thumb recordings from young, healthy subjects whilst watching one-minute 40 videos.",
+        "url": "https://www.eecs.qmul.ac.uk/mmv/datasets/deap/index.html",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1109/T-AFFC.2011.15"
+    },
+    {
+        "name": "University of Queensland Vital Signs Dataset",
+        "subjects": 32,
+        "access": "Open Access: CC BY-NC 3.0",
+        "referenceMeasurements": "BP",
+        "description": "Recordings from patients during anaesthesia, ranging from minutes to hours in duration.",
+        "url": "https://doi.org/102.100.100/6914",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp",
+            "BP",
+            "EEG"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1213/ANE.0b013e318241f7c0"
+    },
+    {
+        "name": "ESUM SNF Project Dataset",
+        "subjects": 31,
+        "access": "Open Access: no licence",
+        "referenceMeasurements": "",
+        "description": "Wrist recordings whilst walking.",
+        "url": "https://github.com/vojha-code/ESUM-project",
+        "signals": [
+            "PPG",
+            "accel",
+            "EDA"
+        ],
+        "group": "General",
+        "references": "https://doi.org/10.1016/j.ins.2018.09.061"
+    },
+    {
+        "name": "MARSH Dataset",
+        "subjects": 29,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "15-min finger recordings during spontaneous and metronome-guided breathing.",
+        "url": "https://doi.org/10.5281/zenodo.3673924",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1016/j.bspc.2020.101887"
+    },
+    {
+        "name": "Non-invasive BP Estimation",
+        "subjects": 26,
+        "access": "Open Access: unspecified",
+        "referenceMeasurements": "",
+        "description": "Finger recordings from healthy adults.",
+        "url": "https://www.kaggle.com/mkachuee/noninvasivebp",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP",
+            "PCG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1109/TIM.2017.2745081"
+    },
+    {
+        "name": "GalaxyPPG",
+        "subjects": 24,
+        "access": "Open Access: unspecified",
+        "referenceMeasurements": "HR, IBI, temp",
+        "description": "Wrist recordings acquired using a Galaxy Watch 5 and an Empatica E4, alongside chest ECG data.",
+        "url": "https://doi.org/10.5281/zenodo.14635822",
+        "signals": [
+            "PPG",
+            "ECG",
+            "accel"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1109/JSEN.2018.2879970"
+    },
+    {
+        "name": "gyro-acc-ppg Dataset",
+        "subjects": 24,
+        "access": "Open Access: unspecified",
+        "referenceMeasurements": "",
+        "description": "Wrist recordings from healthy subjects during an exercise protocol lasting 12 minutes.",
+        "url": "https://github.com/hooseok/gyro_acc_ppg",
+        "signals": [
+            "PPG",
+            "ECG",
+            "accel",
+            "gyro"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1109/JSEN.2018.2879970"
+    },
+    {
+        "name": "Pulse Transit Time PPG Dataset",
+        "subjects": 22,
+        "access": "Open Access: ODbL 1.0",
+        "referenceMeasurements": "",
+        "description": "Finger recordings from healthy subjects during sitting, walking and running.",
+        "url": "https://doi.org/10.13026/338y-cd69",
+        "signals": [
+            "PPG",
+            "ECG",
+            "multiwavelength PPG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.13026/g3me-rt62"
+    },
+    {
+        "name": "Welltory-PPG-dataset",
+        "subjects": 21,
+        "access": "Open Access: CC0 1.0",
+        "referenceMeasurements": "RR intervals",
+        "description": "Smartphone recordings acquired from the index finger in contact with the camera.",
+        "url": "https://github.com/Welltory/welltory-ppg-dataset",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.3390/s21206798"
+    },
+    {
+        "name": "Wearable and Clinical Devices Dataset",
+        "subjects": 18,
+        "access": "Open Access: CC BY-NC 4.0",
+        "referenceMeasurements": "",
+        "description": "Wrist PPG recordings acquired for 5 mins at rest, and 5mins whilst walking on spot.",
+        "url": "https://doi.org/10.21979/N9/42BBFA",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp",
+            "accel",
+            "EDA"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.3390/s20236778"
+    },
+    {
+        "name": "iAMwell Dataset",
+        "subjects": 15,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "~ 20-min recordings before, during and after running.",
+        "url": "https://doi.org/10.5281/zenodo.1012725",
+        "signals": [
+            "PPG",
+            "ECG",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": null
+    },
+    {
+        "name": "Simultaneous Measurements Dataset",
+        "subjects": 13,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Recordings from adults at rest and during cognitive and physical tasks.",
+        "url": "https://doi.org/10.13026/ddzr-dw82",
+        "signals": [
+            "PPG",
+            "ECG",
+            "accel",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "http://www.cinc.org/archives/2019/pdf/CinC2019-031.pdf"
+    },
+    {
+        "name": "IEEE Signal Processing Cup 2015",
+        "subjects": 12,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "~ 5-min recordings during intensive physical exercise from males aged 18-35.",
+        "url": "https://doi.org/10.5281/zenodo.3902709",
+        "signals": [
+            "PPG",
+            "ECG",
+            "accel",
+            "multiwavelength PPG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1109/TBME.2014.2359372"
+    },
+    {
+        "name": "AffectiveROAD Dataset",
+        "subjects": 10,
+        "access": "Open Access: unspecified",
+        "referenceMeasurements": "",
+        "description": "Recordings acquired whilst driving a car for ~ 86 minutes from mostly young adults.",
+        "url": "https://www.media.mit.edu/tools/affectiveroad/",
+        "signals": [
+            "PPG",
+            "accel",
+            "EDA"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1145/3167132.3167395"
+    },
+    {
+        "name": "Labeled raw PPG Signals",
+        "subjects": 9,
+        "access": "Open Access: CC0 1.0",
+        "referenceMeasurements": "",
+        "description": "Finger recordings acquired at rest for ~ 20-40 minutes from healthy adults.",
+        "url": "https://doi.org/10.4231/1BE9-YY17",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Healthy",
+        "references": null
+    },
+    {
+        "name": "HYPE Dataset",
+        "subjects": 9,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "BP",
+        "description": "Wrist recordings from hypertensive subjects: 8 subjects during stress tests, and 9 subjects during 24-hour monitoring.",
+        "url": "https://github.com/arianesasso/aime-2020",
+        "signals": [
+            "PPG",
+            "BP"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1007/978-3-030-59137-3_29"
+    },
+    {
+        "name": "Wrist PPG During Exercise",
+        "subjects": 8,
+        "access": "Human Approval (No Fee)",
+        "referenceMeasurements": "BP",
+        "description": "Wrist recordings acquired from adults aged 22-32 during walking, running and bike riding.",
+        "url": "https://doi.org/10.13026/C2PQ1X",
+        "signals": [
+            "PPG",
+            "BP",
+            "accel"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.3390/data2010001"
+    },
+    {
+        "name": "PPG-ACC Dataset",
+        "subjects": 7,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Wrist recordings acquired from healthy adults aged 20-52 during rest, squatting and stepping.",
+        "url": "https://doi.org/10.1016/j.dib.2019.105044",
+        "signals": [
+            "PPG",
+            "accel"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.1016/j.dib.2019.105044"
+    },
+    {
+        "name": "Raw PPG Signal in Varying Levels of Activity",
+        "subjects": 5,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "Finger recordings acquired at rest, talking and walking for ~ 10 mins each from healthy adults.",
+        "url": "https://doi.org/10.4231/8VF2-1729",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Healthy",
+        "references": null
+    },
+    {
+        "name": "PPG-Diary",
+        "subjects": 1,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "A 28-day thumb recording from a healthy adult, with annotations of activities of daily living.",
+        "url": "https://doi.org/10.5281/zenodo.3268501",
+        "signals": [
+            "PPG",
+            "multiwavelength PPG"
+        ],
+        "group": "Healthy",
+        "references": "https://doi.org/10.3390/ecsa-7-08233"
+    },
+    {
+        "name": "Eight-Emotion Sentics Dataset",
+        "subjects": 1,
+        "access": "Open Access: CC BY 4.0",
+        "referenceMeasurements": "",
+        "description": "25-min recordings during a protocol to evoke emotions from 1 subject each day for 20 days.",
+        "url": "https://affect.media.mit.edu/share-data.php",
+        "signals": [
+            "PPG",
+            "EMG",
+            "GSR",
+            "resp"
+        ],
+        "group": "Healthy",
+        "references": "https://affect.media.mit.edu/projectpages/archived/TR-526/TR-526.pdf"
+    },
+    {
+        "name": "Photoplethysmography in dogs and cats",
+        "subjects": 21,
+        "access": "Open Access: CC BY-SA 4.0",
+        "referenceMeasurements": "",
+        "description": "~ 10-20 sec recordings at several arterial sites from 11 dogs and 10 cats.",
+        "url": "https://doi.org/10.5281/zenodo.1296214",
+        "signals": [
+            "PPG"
+        ],
+        "group": "Animal",
+        "references": "https://doi.org/10.1088/1361-6579/aaf433"
+    }
+]

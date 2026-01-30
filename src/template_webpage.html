@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoplethysmography Datasets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .table-auto {
+            width: 100%;
+        }
+        .table-auto th, .table-auto td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .table-auto th {
+            font-weight: 600;
+            color: #4b5563;
+            background-color: #f9fafb;
+        }
+        .table-auto tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+        .table-auto tbody tr:hover {
+            background-color: #f3f4f6;
+        }
+        .data-source-note {
+            font-size: 0.9em;
+            color: #10b981; /* Tailwind 'emerald-500' */
+            font-weight: 500;
+        }
+        /* Custom scrollbar for better table appearance */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background-color: #d1d5db; /* gray-300 */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-7xl mx-auto my-8 md:my-12">
+        <header class="mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2 text-center">Photoplethysmography Datasets</h1>
+            <div class="my-2"></div>
+            <p class="text-lg text-gray-600">
+                This webpage provides a catalog of datasets containing photoplethysmography (PPG) signals.
+            </p>
+            <div class="my-2"></div>
+            <p class="text-lg text-gray-600">
+                View the entire list below, search for a particular dataset, or narrow down the list by filtering based on specific criteria.
+            </p>
+            <div class="my-2"></div>
+            <p class="text-lg text-gray-600">
+                <a href="#contribute-section" class="text-blue-600 hover:underline font-medium">See here to suggest additional datasets to be included</a>.
+            </p>
+        </header>
+
+        <!-- Search and Filter Section (Refactored to Grid) -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Search & Filter</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:col-span-4 gap-6 mb-8">
+            
+            <!-- Search Bar (Spans 2 columns on large screens) -->
+            <div class="relative lg:col-span-2">
+                <label for="searchInput" class="sr-only">Search by name or description</label>
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search by name or description..."
+                    class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+            </div>
+
+            <!-- Min Subjects Filter (1 column) -->
+            <div>
+                <label for="minSubjects" class="block text-sm font-medium text-gray-700 mb-1">Min. Subjects:</label>
+                <input type="number" id="minSubjects" value="1" min="1"
+                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Population Filter (1 column) -->
+            <div>
+                <label for="populationFilter" class="block text-sm font-medium text-gray-700 mb-1">Population:</label>
+                <select id="populationFilter" class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="all">All</option>
+                    <option value="healthy">Healthy Volunteers</option>
+                    <option value="patient">Patient Group</option>
+                    <option value="general">General</option>
+                    <option value="simulated">Simulated</option>
+                    <option value="animal">Animal</option>
+                </select>
+            </div>
+
+            <!-- Signal Filters (Spans 2 columns on medium/large) -->
+            <div id="signalFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
+                <span class="block text-sm font-semibold text-gray-800 mb-2">Signal Type(s):</span>
+                <p class="text-xs text-gray-500 mb-2">Must include all of the following signal types.</p>
+                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                    <div class="flex items-center">
+                        <input id="filter-ppg" type="checkbox" value="PPG" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-ppg" class="ml-2 font-medium text-gray-700">PPG</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-ecg" type="checkbox" value="ECG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-ecg" class="ml-2 font-medium text-gray-700">ECG</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-bp" type="checkbox" value="BP" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-bp" class="ml-2 font-medium text-gray-700">BP</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-resp" type="checkbox" value="resp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-resp" class="ml-2 font-medium text-gray-700">Resp</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-accel" type="checkbox" value="accel" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-accel" class="ml-2 font-medium text-gray-700">Accel</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-eeg" type="checkbox" value="EEG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-eeg" class="ml-2 font-medium text-gray-700">EEG</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-emg" type="checkbox" value="EMG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-emg" class="ml-2 font-medium text-gray-700">EMG</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-eda" type="checkbox" value="EDA" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-eda" class="ml-2 font-medium text-gray-700">EDA</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-bcg" type="checkbox" value="BCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-bcg" class="ml-2 font-medium text-gray-700">BCG</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-gsr" type="checkbox" value="GSR" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-gsr" class="ml-2 font-medium text-gray-700">GSR</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-pcg" type="checkbox" value="PCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-pcg" class="ml-2 font-medium text-gray-700">PCG</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reference Measurements Filter (Spans 2 columns on medium/large) -->
+            <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2 md:col-span-2">
+                <span class="block text-sm font-semibold text-gray-800 mb-2">Accompanying parameter(s):</span>
+                <p class="text-xs text-gray-500 mb-2">Must include all of the following parameters.</p>
+                <div id="referenceCheckboxes" class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                    <!-- Checkboxes will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Access Filter (Spans 2 columns on medium/large) -->
+            <div id="accessFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
+                <span class="block text-sm font-semibold text-gray-800 mb-2">Data Access:</span>
+                <p class="text-xs text-gray-500 mb-2">Select acceptable data access conditions.</p>
+                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                    <div class="flex items-center">
+                        <input id="filter-open" type="checkbox" value="open-access" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-open" class="ml-2 font-medium text-gray-700">Open Access</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-automated" type="checkbox" value="Automated Approval" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-automated" class="ml-2 font-medium text-gray-700">Automated Approval</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-human-nofee" type="checkbox" value="Human Approval (No Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-human-nofee" class="ml-2 font-medium text-gray-700">Human Approval (No Fee)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="filter-human-fee" type="checkbox" value="Human Approval (Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="filter-human-fee" class="ml-2 font-medium text-gray-700">Human Approval (Fee)</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- New Subheading for the Table -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Datasets</h2>
+        <p class="text-gray-600 mb-8">
+            The following datasets meet the selection criteria. You can sort by clicking column headers.
+        </p>
+
+        <!-- Dataset Table Container -->
+        <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-md">
+            <table class="table-auto">
+                <thead>
+                    <tr>
+                        <th class="w-1/6">Dataset Name</th>
+                        <th class="w-1/12">No. Subjects</th>
+                        <th class="w-1/12">Access</th>
+                        <th class="w-1/6">Signal(s)</th>
+                        <th class="w-1/12">Reference Measurements</th>
+                        <th class="w-1/6">Population</th>
+                        <th class="w-1/4">Description</th>
+                        <th class="w-1/12">References</th>
+                    </tr>
+                </thead>
+                <tbody id="datasetsTableBody">
+                    <!-- Table rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
+            <div id="no-results" class="hidden text-center text-gray-500 p-8">No datasets match your criteria.</div>
+        </div>
+
+        <!-- New Paragraph with Definitions -->
+        <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Definitions</h3>
+        <p class="text-gray-600 mt-2">
+            Definitions: PPG (Photoplethysmography), ECG (Electrocardiography), BP (Blood Pressure), resp (Respiration), accel (Accelerometer), EDA (Electrodermal Activity), BCG (Ballistocardiography), EEG (Electroencephalography), EMG (Electromyography), GSR (Galvanic Skin Response), PCG (Phonocardiography), RR (Respiratory Rate), SV (Stroke Volume), HR (Heart Rate), IBI (inter-beat intervals), temp (temperature), SpO2 (Oxygen Saturation), LVET (Left Ventricular Ejection Time).
+        </p>
+        <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Want to contribute a dataset?</h3>
+        <div id="contribute-section" class="mt-10 p-6 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
+            <span class="block text-gray-700 mb-2">You can suggest additional datasets using this form:</span>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScgsnaZRB5r3kn4WBKyx6IomWOuclaxffszmRkwLyHdRNZR0w/viewform?usp=dialog"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-block px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition">
+                Suggest a Dataset
+            </a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // The datasets array will be injected by the Python script here:
+            const datasets = {DATASETS_PLACEHOLDER};
+
+            const datasetsTableBody = document.getElementById('datasetsTableBody');
+            const noResults = document.getElementById('no-results');
+            const searchInput = document.getElementById('searchInput');
+            const signalCheckboxes = document.querySelectorAll('#signalFilters input[type="checkbox"]');
+            const accessCheckboxes = document.querySelectorAll('#accessFilters input[type="checkbox"]');
+            const populationFilter = document.getElementById('populationFilter');
+            const minSubjectsInput = document.getElementById('minSubjects');
+            const referenceCheckboxesContainer = document.getElementById('referenceCheckboxes');
+            
+            // Map for display names
+            const populationMap = {
+                'healthy': 'Healthy Volunteers',
+                'patient': 'Patient Group',
+                'general': 'General',
+                'animal': 'Animal',
+                'simulated': 'Simulated',
+            };
+
+            const renderDatasets = (filteredDatasets) => {
+                datasetsTableBody.innerHTML = '';
+                if (filteredDatasets.length === 0) {
+                    noResults.classList.remove('hidden');
+                    return;
+                } else {
+                    noResults.classList.add('hidden');
+                }
+
+                filteredDatasets.forEach(dataset => {
+                    const row = document.createElement('tr');
+                    
+                    // Dataset Name and URL
+                    const nameCell = document.createElement('td');
+                    // Handle missing URL gracefully
+                    if (dataset.url) {
+                        nameCell.innerHTML = `<a href="${dataset.url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">${dataset.name}</a>`;
+                    } else {
+                        nameCell.textContent = dataset.name;
+                    }
+                    row.appendChild(nameCell);
+
+                    // Number of Subjects
+                    const subjectsCell = document.createElement('td');
+                    subjectsCell.textContent = dataset.subjects.toLocaleString();
+                    row.appendChild(subjectsCell);
+                    
+                    // Access
+                    const accessCell = document.createElement('td');
+                    accessCell.textContent = dataset.access;
+                    row.appendChild(accessCell);
+                    
+                    // Signal Types
+                    const signalsCell = document.createElement('td');
+                    signalsCell.textContent = dataset.signals.join(', ');
+                    row.appendChild(signalsCell);
+
+                    // Reference Measurements
+                    const referenceMeasurementsCell = document.createElement('td');
+                    referenceMeasurementsCell.textContent = dataset.referenceMeasurements;
+                    row.appendChild(referenceMeasurementsCell);
+
+                    // Population
+                    const populationCell = document.createElement('td');
+                    populationCell.textContent = populationMap[dataset.group.toLowerCase()] || dataset.group;
+                    row.appendChild(populationCell);
+
+                    // Description
+                    const descriptionCell = document.createElement('td');
+                    descriptionCell.textContent = dataset.description;
+                    row.appendChild(descriptionCell);
+
+                    // References
+                    const referencesCell = document.createElement('td');
+                    if (dataset.references) {
+                        referencesCell.innerHTML = `<a href="${dataset.references}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Link</a>`;
+                    } else {
+                        referencesCell.textContent = 'N/A';
+                    }
+                    row.appendChild(referencesCell);
+
+                    datasetsTableBody.appendChild(row);
+                });
+            };
+
+            const filterAndSearch = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                // Get selected filter values
+                const selectedSignals = Array.from(signalCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+                const selectedAccess = Array.from(accessCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+                const selectedReferences = Array.from(document.querySelectorAll('#referenceCheckboxes input[type="checkbox"]'))
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+                const selectedPopulation = populationFilter.value;
+                const minSubjects = parseInt(minSubjectsInput.value) || 0;
+
+                const filteredDatasets = datasets.filter(dataset => {
+                    // 1. Search Filter
+                    const datasetString = `${dataset.name} ${dataset.description}`.toLowerCase();
+                    const matchesSearch = datasetString.includes(searchTerm);
+                    
+                    // 2. Signal Filter (Match ALL selected signals)
+                    const matchesSignal = selectedSignals.length === 0 || selectedSignals.every(s => dataset.signals.includes(s));
+                    
+                    // 3. Access Filter (Match ANY selected access with flexible open access matching)
+                    let matchesAccess = false;
+                    if (selectedAccess.length === 0) {
+                        matchesAccess = true;
+                    } else {
+                        matchesAccess = selectedAccess.some(accessType => {
+                            if (accessType === 'open-access') {
+                                // Match any access type containing "open access" (case insensitive)
+                                return dataset.access.toLowerCase().includes('open access');
+                            } else {
+                                // Exact match for other access types
+                                return dataset.access === accessType;
+                            }
+                        });
+                    }
+                    
+                    // 4. Population Filter
+                    const matchesPopulation = selectedPopulation === 'all' || dataset.group.toLowerCase() === selectedPopulation;
+                    
+                    // 5. Minimum Subjects Filter
+                    const meetsMinSubjects = dataset.subjects >= minSubjects;
+
+                    // 6. Reference Measurements Filter (Match ALL selected references)
+                    const datasetRefs = dataset.referenceMeasurements ? dataset.referenceMeasurements.split(',').map(r => r.trim()) : [];
+                    const matchesReference = selectedReferences.length === 0 || selectedReferences.every(ref => datasetRefs.includes(ref));
+
+                    return matchesSearch && matchesSignal && matchesAccess && matchesPopulation && meetsMinSubjects && matchesReference;
+                });
+
+                renderDatasets(filteredDatasets);
+            };
+
+            const populateReferenceCheckboxes = () => {
+                const allReferences = new Set();
+                datasets.forEach(dataset => {
+                    if (dataset.referenceMeasurements) {
+                        dataset.referenceMeasurements.split(',').forEach(ref => {
+                            const trimmedRef = ref.trim();
+                            if (trimmedRef) {
+                                allReferences.add(trimmedRef);
+                            }
+                        });
+                    }
+                });
+
+                // Sort references alphabetically for consistent display
+                Array.from(allReferences).sort().forEach(ref => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center';
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    // Sanitize ID for safety
+                    input.id = `filter-ref-${ref.replace(/[\s\(\),]/g, '_')}`; 
+                    input.value = ref;
+                    input.checked = false; 
+                    input.className = 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500';
+
+                    const label = document.createElement('label');
+                    label.htmlFor = input.id;
+                    label.className = 'ml-2 font-medium text-gray-700'; 
+                    label.textContent = ref;
+
+                    div.appendChild(input);
+                    div.appendChild(label);
+                    referenceCheckboxesContainer.appendChild(div);
+                });
+                
+                // Add event listeners to dynamically created checkboxes
+                document.querySelectorAll('#referenceCheckboxes input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', filterAndSearch);
+                });
+            };
+
+            // Event listeners for static filters
+            searchInput.addEventListener('input', filterAndSearch);
+            accessCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterAndSearch);
+            });
+            signalCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterAndSearch);
+            });
+            populationFilter.addEventListener('change', filterAndSearch);
+            minSubjectsInput.addEventListener('input', filterAndSearch);
+            
+            // Initial setup and render
+            populateReferenceCheckboxes();
+            filterAndSearch();
+        });
+    </script>
+</body>
+</html>
