@@ -8,7 +8,7 @@ BASE_DIR = SRC_DIR.parent                        # data
 
 DATA_FILE_PATH = SRC_DIR / 'datasets_info.json'
 TEMPLATE_FILE_PATH = SRC_DIR / 'template_webpage.html'
-OUTPUT_FILE_PATH = BASE_DIR / 'docs' / 'ppg_datasets.html'
+OUTPUT_FILE_PATH = BASE_DIR / 'docs' / 'index.html'
 
 # Ensure output directory exists
 OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
