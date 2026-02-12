@@ -45,6 +45,22 @@
         "references": "https://doi.org/10.1038/s41598-018-20062-4"
     },
     {
+        "name": "MIMIC-III-Ext-PPG",
+        "subjects": 6131,
+        "access": "Open Access: Data Use Agreement",
+        "referenceMeasurements": "BP, RR, HR, rhythm",
+        "description": "A benchmark dataset of 30-second PPG segments from critically-ill patients.",
+        "url": "https://doi.org/10.13026/fcvm-qs78",
+        "signals": [
+            "PPG",
+            "ECG",
+            "BP",
+            "resp"
+        ],
+        "group": "Patient",
+        "references": "https://doi.org/10.1038/s41598-018-20062-4"
+    },
+    {
         "name": "MESA Dataset",
         "subjects": 2056,
         "access": "Human Approval (No Fee)",
