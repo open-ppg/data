@@ -63,129 +63,135 @@
             </p>
         </header>
 
-        <!-- Search and Filter Section (Refactored to Grid) -->
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Search & Filter</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:col-span-4 gap-6 mb-8">
-            
-            <!-- Search Bar (Spans 2 columns on large screens) -->
-            <div class="relative lg:col-span-2">
-                <label for="searchInput" class="sr-only">Search by name or description</label>
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
+        <!-- Search and Filter Section (Collapsible Dropdown) -->
+        <details class="mb-8 rounded-xl border border-gray-200 bg-white shadow-sm">
+            <summary class="cursor-pointer list-none px-4 py-3 text-2xl font-bold text-gray-800 flex items-center justify-between">
+                <span>Search & Filter</span>
+                <span class="text-sm font-medium text-gray-500">Click to expand/collapse</span>
+            </summary>
+            <div class="px-4 pb-4 pt-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:col-span-4 gap-6">
+                    
+                    <!-- Search Bar (Spans 2 columns on large screens) -->
+                    <div class="relative lg:col-span-2">
+                        <label for="searchInput" class="sr-only">Search by name or description</label>
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Search by name or description..."
+                            class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+
+                    <!-- Min Subjects Filter (1 column) -->
+                    <div>
+                        <label for="minSubjects" class="block text-sm font-medium text-gray-700 mb-1">Min. Subjects:</label>
+                        <input type="number" id="minSubjects" value="1" min="1"
+                            class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Population Filter (1 column) -->
+                    <div>
+                        <label for="populationFilter" class="block text-sm font-medium text-gray-700 mb-1">Population:</label>
+                        <select id="populationFilter" class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All</option>
+                            <option value="healthy">Healthy Volunteers</option>
+                            <option value="patient">Patient Group</option>
+                            <option value="general">General</option>
+                            <option value="simulated">Simulated</option>
+                            <option value="animal">Animal</option>
+                        </select>
+                    </div>
+
+                    <!-- Signal Filters (Spans 2 columns on medium/large) -->
+                    <div id="signalFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
+                        <span class="block text-sm font-semibold text-gray-800 mb-2">Signal Type(s):</span>
+                        <p class="text-xs text-gray-500 mb-2">Must include all of the following signal types.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                            <div class="flex items-center">
+                                <input id="filter-ppg" type="checkbox" value="PPG" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-ppg" class="ml-2 font-medium text-gray-700">PPG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-ecg" type="checkbox" value="ECG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-ecg" class="ml-2 font-medium text-gray-700">ECG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-bp" type="checkbox" value="BP" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-bp" class="ml-2 font-medium text-gray-700">BP</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-resp" type="checkbox" value="resp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-resp" class="ml-2 font-medium text-gray-700">Resp</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-accel" type="checkbox" value="accel" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-accel" class="ml-2 font-medium text-gray-700">Accel</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-eeg" type="checkbox" value="EEG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-eeg" class="ml-2 font-medium text-gray-700">EEG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-emg" type="checkbox" value="EMG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-emg" class="ml-2 font-medium text-gray-700">EMG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-eda" type="checkbox" value="EDA" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-eda" class="ml-2 font-medium text-gray-700">EDA</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-bcg" type="checkbox" value="BCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-bcg" class="ml-2 font-medium text-gray-700">BCG</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-gsr" type="checkbox" value="GSR" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-gsr" class="ml-2 font-medium text-gray-700">GSR</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-pcg" type="checkbox" value="PCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-pcg" class="ml-2 font-medium text-gray-700">PCG</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reference Measurements Filter (Spans 2 columns on medium/large) -->
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2 md:col-span-2">
+                        <span class="block text-sm font-semibold text-gray-800 mb-2">Accompanying parameter(s):</span>
+                        <p class="text-xs text-gray-500 mb-2">Must include all of the following parameters.</p>
+                        <div id="referenceCheckboxes" class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                            <!-- Checkboxes will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <!-- Access Filter (Spans 2 columns on medium/large) -->
+                    <div id="accessFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
+                        <span class="block text-sm font-semibold text-gray-800 mb-2">Data Access:</span>
+                        <p class="text-xs text-gray-500 mb-2">Select acceptable data access conditions.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                            <div class="flex items-center">
+                                <input id="filter-open" type="checkbox" value="open-access" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-open" class="ml-2 font-medium text-gray-700">Open Access</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-automated" type="checkbox" value="Automated Approval" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-automated" class="ml-2 font-medium text-gray-700">Automated Approval</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-human-nofee" type="checkbox" value="Human Approval (No Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-human-nofee" class="ml-2 font-medium text-gray-700">Human Approval (No Fee)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="filter-human-fee" type="checkbox" value="Human Approval (Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                <label for="filter-human-fee" class="ml-2 font-medium text-gray-700">Human Approval (Fee)</label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <input type="text" id="searchInput" placeholder="Search by name or description..."
-                    class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
             </div>
-
-            <!-- Min Subjects Filter (1 column) -->
-            <div>
-                <label for="minSubjects" class="block text-sm font-medium text-gray-700 mb-1">Min. Subjects:</label>
-                <input type="number" id="minSubjects" value="1" min="1"
-                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            <!-- Population Filter (1 column) -->
-            <div>
-                <label for="populationFilter" class="block text-sm font-medium text-gray-700 mb-1">Population:</label>
-                <select id="populationFilter" class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    <option value="all">All</option>
-                    <option value="healthy">Healthy Volunteers</option>
-                    <option value="patient">Patient Group</option>
-                    <option value="general">General</option>
-                    <option value="simulated">Simulated</option>
-                    <option value="animal">Animal</option>
-                </select>
-            </div>
-
-            <!-- Signal Filters (Spans 2 columns on medium/large) -->
-            <div id="signalFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
-                <span class="block text-sm font-semibold text-gray-800 mb-2">Signal Type(s):</span>
-                <p class="text-xs text-gray-500 mb-2">Must include all of the following signal types.</p>
-                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                    <div class="flex items-center">
-                        <input id="filter-ppg" type="checkbox" value="PPG" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-ppg" class="ml-2 font-medium text-gray-700">PPG</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-ecg" type="checkbox" value="ECG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-ecg" class="ml-2 font-medium text-gray-700">ECG</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-bp" type="checkbox" value="BP" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-bp" class="ml-2 font-medium text-gray-700">BP</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-resp" type="checkbox" value="resp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-resp" class="ml-2 font-medium text-gray-700">Resp</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-accel" type="checkbox" value="accel" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-accel" class="ml-2 font-medium text-gray-700">Accel</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-eeg" type="checkbox" value="EEG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-eeg" class="ml-2 font-medium text-gray-700">EEG</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-emg" type="checkbox" value="EMG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-emg" class="ml-2 font-medium text-gray-700">EMG</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-eda" type="checkbox" value="EDA" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-eda" class="ml-2 font-medium text-gray-700">EDA</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-bcg" type="checkbox" value="BCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-bcg" class="ml-2 font-medium text-gray-700">BCG</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-gsr" type="checkbox" value="GSR" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-gsr" class="ml-2 font-medium text-gray-700">GSR</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-pcg" type="checkbox" value="PCG" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-pcg" class="ml-2 font-medium text-gray-700">PCG</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reference Measurements Filter (Spans 2 columns on medium/large) -->
-            <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2 md:col-span-2">
-                <span class="block text-sm font-semibold text-gray-800 mb-2">Accompanying parameter(s):</span>
-                <p class="text-xs text-gray-500 mb-2">Must include all of the following parameters.</p>
-                <div id="referenceCheckboxes" class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                    <!-- Checkboxes will be dynamically added here -->
-                </div>
-            </div>
-
-            <!-- Access Filter (Spans 2 columns on medium/large) -->
-            <div id="accessFilters" class="p-3 bg-gray-50 rounded-xl border border-gray-200 lg:col-span-2">
-                <span class="block text-sm font-semibold text-gray-800 mb-2">Data Access:</span>
-                <p class="text-xs text-gray-500 mb-2">Select acceptable data access conditions.</p>
-                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                    <div class="flex items-center">
-                        <input id="filter-open" type="checkbox" value="open-access" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-open" class="ml-2 font-medium text-gray-700">Open Access</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-automated" type="checkbox" value="Automated Approval" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-automated" class="ml-2 font-medium text-gray-700">Automated Approval</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-human-nofee" type="checkbox" value="Human Approval (No Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-human-nofee" class="ml-2 font-medium text-gray-700">Human Approval (No Fee)</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input id="filter-human-fee" type="checkbox" value="Human Approval (Fee)" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="filter-human-fee" class="ml-2 font-medium text-gray-700">Human Approval (Fee)</label>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </details>
 
         <!-- New Subheading for the Table -->
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Datasets</h2>
